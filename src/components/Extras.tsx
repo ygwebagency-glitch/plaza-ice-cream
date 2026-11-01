@@ -18,9 +18,9 @@ export function ScrollProgress() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-1">
       <div className="h-full origin-left bg-strawberry" style={{ transform: `scaleX(${p})` }} />
-      <ConeIcon className="absolute -top-1 h-4 w-4 -translate-x-1/2" />
-      <style>{`.pi-prog-cone{}`}</style>
-      <span className="absolute -top-1" style={{ left: `${p * 100}%` }} />
+      <span className="absolute top-0 -translate-x-1/2" style={{ left: `${p * 100}%` }}>
+        <ConeIcon className="h-5 w-5 rotate-180" />
+      </span>
     </div>
   );
 }
