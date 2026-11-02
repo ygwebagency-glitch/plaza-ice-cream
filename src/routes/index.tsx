@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
-  Award, BadgeCheck, CalendarHeart, Coffee, CupSoda, Dessert, Dog, IceCreamBowl, IceCreamCone, Instagram,
+  Award, BadgeCheck, Coffee, CupSoda, Dessert, Dog, IceCreamBowl, IceCreamCone, Instagram,
   Landmark, Leaf, Popsicle, ShieldCheck, Sprout, Star, Sun, MapPin, Heart,
 } from "lucide-react";
 import { Hero } from "@/components/Hero";
@@ -353,4 +353,4 @@ function Home() {
   );
 }
 
-export { CalendarHeart };
+
