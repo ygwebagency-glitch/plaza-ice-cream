@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClassicIceCreamVansRouteImport } from './routes/classic-ice-cream-vans'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as OurGalleryRouteImport } from './routes/our-gallery'
+import { Route as OurIceCreamVansRouteImport } from './routes/our-ice-cream-vans'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClassicIceCreamVansRoute = ClassicIceCreamVansRouteImport.update({
+  id: '/classic-ice-cream-vans',
+  path: '/classic-ice-cream-vans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurGalleryRoute = OurGalleryRouteImport.update({
+  id: '/our-gallery',
+  path: '/our-gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OurIceCreamVansRoute = OurIceCreamVansRouteImport.update({
+  id: '/our-ice-cream-vans',
+  path: '/our-ice-cream-vans',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/classic-ice-cream-vans': typeof ClassicIceCreamVansRoute
+  '/contact-us': typeof ContactUsRoute
+  '/gallery': typeof GalleryRoute
+  '/our-gallery': typeof OurGalleryRoute
+  '/our-ice-cream-vans': typeof OurIceCreamVansRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/classic-ice-cream-vans': typeof ClassicIceCreamVansRoute
+  '/contact-us': typeof ContactUsRoute
+  '/gallery': typeof GalleryRoute
+  '/our-gallery': typeof OurGalleryRoute
+  '/our-ice-cream-vans': typeof OurIceCreamVansRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/classic-ice-cream-vans': typeof ClassicIceCreamVansRoute
+  '/contact-us': typeof ContactUsRoute
+  '/gallery': typeof GalleryRoute
+  '/our-gallery': typeof OurGalleryRoute
+  '/our-ice-cream-vans': typeof OurIceCreamVansRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/classic-ice-cream-vans'
+    | '/contact-us'
+    | '/gallery'
+    | '/our-gallery'
+    | '/our-ice-cream-vans'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/classic-ice-cream-vans'
+    | '/contact-us'
+    | '/gallery'
+    | '/our-gallery'
+    | '/our-ice-cream-vans'
+  id:
+    | '__root__'
+    | '/'
+    | '/classic-ice-cream-vans'
+    | '/contact-us'
+    | '/gallery'
+    | '/our-gallery'
+    | '/our-ice-cream-vans'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClassicIceCreamVansRoute: typeof ClassicIceCreamVansRoute
+  ContactUsRoute: typeof ContactUsRoute
+  GalleryRoute: typeof GalleryRoute
+  OurGalleryRoute: typeof OurGalleryRoute
+  OurIceCreamVansRoute: typeof OurIceCreamVansRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/classic-ice-cream-vans': {
+      id: '/classic-ice-cream-vans'
+      path: '/classic-ice-cream-vans'
+      fullPath: '/classic-ice-cream-vans'
+      preLoaderRoute: typeof ClassicIceCreamVansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-gallery': {
+      id: '/our-gallery'
+      path: '/our-gallery'
+      fullPath: '/our-gallery'
+      preLoaderRoute: typeof OurGalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/our-ice-cream-vans': {
+      id: '/our-ice-cream-vans'
+      path: '/our-ice-cream-vans'
+      fullPath: '/our-ice-cream-vans'
+      preLoaderRoute: typeof OurIceCreamVansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClassicIceCreamVansRoute: ClassicIceCreamVansRoute,
+  ContactUsRoute: ContactUsRoute,
+  GalleryRoute: GalleryRoute,
+  OurGalleryRoute: OurGalleryRoute,
+  OurIceCreamVansRoute: OurIceCreamVansRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
