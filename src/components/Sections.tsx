@@ -16,7 +16,7 @@ export function BookingPoster() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setInView(true), io.disconnect()), { threshold: 0.2 });
+    const io = new IntersectionObserver(([e]) => e?.isIntersecting && (setInView(true), io.disconnect()), { threshold: 0.2 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -80,7 +80,7 @@ export function StepsSection() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setDrawn(true), io.disconnect()), { threshold: 0.3 });
+    const io = new IntersectionObserver(([e]) => e?.isIntersecting && (setDrawn(true), io.disconnect()), { threshold: 0.3 });
     io.observe(el);
     return () => io.disconnect();
   }, []);

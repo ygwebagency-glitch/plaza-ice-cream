@@ -60,7 +60,7 @@ export function Img({ name, alt, sizes, priority, className, imgClassName, fit =
       ) : (
         <img
           ref={ref}
-          src={srcFor(name, meta.widths[Math.min(1, meta.widths.length - 1)])}
+          src={srcFor(name, meta.widths[Math.min(1, meta.widths.length - 1)]!)}
           srcSet={srcSetFor(name)}
           sizes={sizes}
           width={meta.width}

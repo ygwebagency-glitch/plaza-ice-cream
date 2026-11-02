@@ -13,7 +13,7 @@ export function sprinkleBurst(x: number, y: number) {
     el.className = "sprinkle-bit";
     el.style.left = `${x}px`;
     el.style.top = `${y}px`;
-    el.style.background = colors[i % 4];
+    el.style.background = colors[i % 4]!;
     el.style.setProperty("--dx", `${Math.cos(a) * dist}px`);
     el.style.setProperty("--dy", `${Math.sin(a) * dist}px`);
     el.style.setProperty("--r", `${Math.random() * 180}deg`);

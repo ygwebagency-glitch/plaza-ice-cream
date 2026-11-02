@@ -96,15 +96,15 @@ function Lightbox({ items, index, setIndex }: { items: GalleryItem[]; index: num
     };
     window.addEventListener("keydown", k);
     const next = new Image();
-    next.src = bestSrc(items[(index + 1) % items.length].name, 1600);
+    next.src = bestSrc(items[(index + 1) % items.length]!.name, 1600);
     return () => window.removeEventListener("keydown", k);
   }, [go, index, items, setIndex]);
-  const it = items[index];
+  const it = items[index]!;
   return (
     <div ref={ref} role="dialog" aria-modal="true" aria-label="Photo viewer" data-lenis-prevent
       className="fixed inset-0 z-[75] flex flex-col bg-navy/95 text-paper animate-in fade-in duration-200"
-      onTouchStart={(e) => (touch.current = e.touches[0].clientX)}
-      onTouchEnd={(e) => { if (touch.current == null) return; const dx = e.changedTouches[0].clientX - touch.current; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); touch.current = null; }}>
+      onTouchStart={(e) => (touch.current = e.touches[0]!.clientX)}
+      onTouchEnd={(e) => { if (touch.current == null) return; const dx = e.changedTouches[0]!.clientX - touch.current; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); touch.current = null; }}>
       <div className="flex items-center justify-between p-4">
         <span className="font-bold">{index + 1} / {items.length}</span>
         <button aria-label="Close gallery" onClick={() => setIndex(null)} className="grid h-11 w-11 place-items-center rounded-full border-2 border-paper"><X className="h-5 w-5" /></button>

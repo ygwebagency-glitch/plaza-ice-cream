@@ -42,10 +42,10 @@ export function Hero() {
       style={{ height: "calc(100svh - 124px)" }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      onTouchStart={(e) => (touch.current = e.touches[0].clientX)}
+      onTouchStart={(e) => (touch.current = e.touches[0]!.clientX)}
       onTouchEnd={(e) => {
         if (touch.current == null) return;
-        const dx = e.changedTouches[0].clientX - touch.current;
+        const dx = e.changedTouches[0]!.clientX - touch.current;
         if (Math.abs(dx) > 50) setI((v) => (v + (dx < 0 ? 1 : slides.length - 1)) % slides.length);
         touch.current = null;
       }}

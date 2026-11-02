@@ -8,7 +8,9 @@ import { cn } from "@/lib/utils";
 
 type Errors = Partial<Record<"name" | "email" | "phone" | "type" | "message", string>>;
 
-export function validateEnquiry(d: Record<string, string>): Errors {
+type Data = { name?: string; email?: string; phone?: string; type?: string; date?: string; location?: string; guests?: string; message?: string; website?: string };
+
+export function validateEnquiry(d: Data): Errors {
   const e: Errors = {};
   if (!d.name?.trim()) e.name = "Please enter your name.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email?.trim() ?? "")) e.email = "Please enter a valid email address.";
@@ -29,14 +31,14 @@ export function EnquiryForm() {
   async function submit(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     const fd = new FormData(ev.currentTarget);
-    const d = Object.fromEntries(fd.entries()) as Record<string, string>;
+    const d = Object.fromEntries(fd.entries()) as Data;
     if (d.website) return; // honeypot
     const e = validateEnquiry(d);
     setErrors(e);
     if (Object.keys(e).length) return;
     setBusy(true);
     setFailed(false);
-    const endpoint = import.meta.env.VITE_FORM_ENDPOINT as string | undefined;
+    const endpoint = import.meta.env["VITE_FORM_ENDPOINT"] as string | undefined;
     try {
       if (endpoint) {
         const r = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(d) });
