@@ -9,7 +9,7 @@ import { startScroll, stopScroll } from "@/lib/smoothScroll";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link to="/" aria-label="The Plaza Ices home" className={cn("wobble-hover inline-flex items-center gap-2 rounded-full bg-navy px-4 py-2.5", className)}>
+    <Link to="/" aria-label="The Plaza Ices home" className={cn("wobble-hover inline-flex items-center gap-2 rounded-full border-2 border-navy bg-paper px-3 py-2 sm:px-4", className)}>
       <ConeIcon className="wobble-target h-7 w-7 shrink-0" />
       <img src="/images/logo.png" alt="The Plaza Ices" width={500} height={63} className="h-[18px] w-auto sm:h-6" />
     </Link>
@@ -98,7 +98,7 @@ export function SiteHeader() {
             ))}
           </nav>
           <div className="flex items-center gap-2">
-            <CTALink to="/contact-us" className="hidden min-h-11 px-5 sm:inline-flex">
+            <CTALink to="/contact-us" className="hidden min-h-11 px-5 md:inline-flex">
               Book a Van
             </CTALink>
             <button
