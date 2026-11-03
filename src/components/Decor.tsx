@@ -35,7 +35,7 @@ const sprinkleColors = ["var(--strawberry)", "var(--sun)", "var(--mint)", "var(-
 export function Sprinkles({ count = 10, className, seed = 1 }: { count?: number; className?: string; seed?: number }) {
   const rnd = (i: number) => {
     const x = Math.sin(i * 9301 + seed * 49297) * 233280;
-    return x - Math.floor(x);
+    return Math.round((x - Math.floor(x)) * 1000) / 1000;
   };
   return (
     <div aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
@@ -44,12 +44,12 @@ export function Sprinkles({ count = 10, className, seed = 1 }: { count?: number;
           key={i}
           className="float absolute block h-2 w-6 rounded-full"
           style={{
-            left: `${rnd(i) * 95}%`,
-            top: `${rnd(i + 50) * 90}%`,
+            left: `${Math.round(rnd(i) * 95)}%`,
+            top: `${Math.round(rnd(i + 50) * 90)}%`,
             background: sprinkleColors[i % 4],
-            ["--rot" as string]: `${(rnd(i + 7) - 0.5) * 120}deg`,
-            animationDelay: `${rnd(i + 3) * -6}s`,
-            animationDuration: `${5 + rnd(i + 9) * 4}s`,
+            ["--rot" as string]: `${Math.round((rnd(i + 7) - 0.5) * 120)}deg`,
+            animationDelay: `${Math.round(rnd(i + 3) * -60) / 10}s`,
+            animationDuration: `${Math.round(50 + rnd(i + 9) * 40) / 10}s`,
           }}
         />
       ))}
