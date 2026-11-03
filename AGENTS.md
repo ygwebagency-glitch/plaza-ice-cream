@@ -8,3 +8,9 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Project rules
+- All site copy lives in `src/data/site.ts` and `src/data/content.ts`; components read from there so wording changes stay in one place.
+- Every photo renders through `src/components/Img.tsx` using `src/data/image-manifest.json` (pre-sized WebP files in `public/images/`), so only the first hero image loads eagerly and nothing is shown larger than its original.
+- Colours come only from the tokens in `src/styles.css`; button styles (`.btn-*`) live in `@layer components` so Tailwind utilities like `hidden` can override them.
+- Old website URLs (`/classic-ice-cream-vans`, `/our-gallery`) redirect to the new pages to keep links working.

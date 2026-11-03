@@ -169,6 +169,7 @@ html.lenis, html.lenis body { height: auto; }
 @utility cv-auto { content-visibility: auto; contain-intrinsic-size: 1px 900px; }
 @utility no-scrollbar { scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
 
+@layer components {
 /* Sticker buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
@@ -186,6 +187,8 @@ html.lenis, html.lenis body { height: auto; }
 .btn-ghost-light { border: 2px solid var(--paper); color: var(--paper); background: transparent; }
 .btn-ghost-light:hover { background: var(--paper); color: var(--navy); }
 @media (max-width: 767px) { .btn-primary { box-shadow: 3px 3px 0 var(--navy); } }
+
+}
 
 /* Sprinkle burst */
 .sprinkle-bit {

@@ -68,8 +68,7 @@ export function Img({ name, alt, sizes, priority, className, imgClassName, fit =
           alt={alt ?? alts[name]}
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
-          // @ts-expect-error fetchpriority is valid HTML
-          fetchpriority={priority ? "high" : undefined}
+          fetchPriority={priority ? "high" : undefined}
           onLoad={onLoad}
           onError={() => setFailed(true)}
           className={cn(

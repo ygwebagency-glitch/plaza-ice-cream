@@ -153,7 +153,7 @@ function StackCards() {
           const next = cards[i + 1];
           if (!next) return;
           gsap.to(card.firstElementChild, {
-            scale: 0.94, rotate: -1, opacity: 0.85, ease: "none",
+            scale: 0.94, rotate: -1, filter: "brightness(0.85)", ease: "none",
             scrollTrigger: { trigger: next, start: "top bottom", end: "top 20%", scrub: true },
           });
         });
