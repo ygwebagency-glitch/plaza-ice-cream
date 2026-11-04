@@ -7,9 +7,18 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Build-time server only; Netlify publishes static documents, not this server.
+  nitro: { preset: "node" },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    pages: [
+      { path: "/" },
+      { path: "/our-ice-cream-vans" },
+      { path: "/gallery" },
+      { path: "/contact-us" },
+    ],
+    prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
 });

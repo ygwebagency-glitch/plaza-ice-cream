@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build && node scripts/export-static.mjs"
+  publish = "dist"
+
+[[redirects]]
+  from = "/classic-ice-cream-vans"
+  to = "/our-ice-cream-vans"
+  status = 301
+
+[[redirects]]
+  from = "/our-gallery"
+  to = "/gallery"
+  status = 301
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

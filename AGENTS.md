@@ -14,3 +14,4 @@
 - Every photo renders through `src/components/Img.tsx` using `src/data/image-manifest.json` (pre-sized WebP files in `public/images/`), so only the first hero image loads eagerly and nothing is shown larger than its original.
 - Colours come only from the tokens in `src/styles.css`; button styles (`.btn-*`) live in `@layer components` so Tailwind utilities like `hidden` can override them.
 - Old website URLs (`/classic-ice-cream-vans`, `/our-gallery`) redirect to the new pages to keep links working.
+- Retain the TanStack Start/Lovable bootstrap and prerender all four public pages; Netlify runs a static export after building so dist contains only public files and build-time artifacts stay in the ignored .output directory.
