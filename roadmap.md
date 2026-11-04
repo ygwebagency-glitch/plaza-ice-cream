@@ -1,7 +1,7 @@
-# Netlify deployment
-- [x] Generate static pages without changing the site.
-- [x] Export public-only dist and configure Netlify redirects.
-- [x] Test export and existing behavior; inspect build diagnostics.
-- [x] Document settings and verification limits.
+# Netlify deployment repair
+- [ ] Remove the listening Node-server preset while preserving the required Lovable/TanStack Start bootstrap and site.
+- [ ] Make npm run build prepare public-only dist automatically; update Netlify settings and runtime requirements.
+- [ ] Test deployment rules and direct page opens/refreshes; inspect automatic build diagnostics.
+- [ ] Document departures from the requested Router-only migration and verification limits.
 
-Netlify CI output and GitHub synchronization remain unverified: no Netlify deployment log or GitHub connection is accessible here. The automatic Lovable build reports success, export tests pass, and all preview pages and the gallery viewer work.
+External verification: Netlify build duration/deployment and GitHub synchronization require access to those services and remain unverified.
