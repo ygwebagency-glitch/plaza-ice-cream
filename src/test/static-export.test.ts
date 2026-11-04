@@ -3,7 +3,6 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
-// @ts-expect-error The standalone Node deployment script has no TS declaration.
 import { exportStatic } from "../../scripts/export-static.mjs";
 
 const temporaryRoots: string[] = [];
