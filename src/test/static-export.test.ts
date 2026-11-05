@@ -54,6 +54,12 @@ describe("Netlify static export", () => {
     expect(config).toMatch(/command = "npm run build"/);
     expect(config).toMatch(/publish = "dist"/);
     expect(config).toMatch(/NODE_VERSION = "20"/);
-    expect((await readFile(join(process.cwd(), "public/_redirects"), "utf8")).trim()).toBe("/*    /index.html    200");
+    const rules = (await readFile(join(process.cwd(), "public/_redirects"), "utf8"))
+      .trim().split("\n").map((line) => line.trim().split(/\s+/));
+    expect(rules).toEqual([
+      ["/classic-ice-cream-vans", "/our-ice-cream-vans", "301"],
+      ["/our-gallery", "/gallery", "301"],
+      ["/*", "/index.html", "200"],
+    ]);
   });
 });
