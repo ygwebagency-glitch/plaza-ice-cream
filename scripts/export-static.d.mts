@@ -1,1 +1,0 @@
-export function exportStatic(root?: string): Promise<void>;

@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { exportStatic } from "../../scripts/export-static.mjs";
+import { prepareStatic, staticOutputPlugin } from "../../scripts/static-output.mjs";
 
 const temporaryRoots: string[] = [];
 afterEach(async () => {
@@ -24,7 +24,7 @@ describe("Netlify static export", () => {
     await writeFile(join(root, "dist/client/assets/app.js"), "public-app");
     await mkdir(join(root, "dist/server"));
     await writeFile(join(root, "dist/server/index.js"), "server-only");
-    await exportStatic(root);
+    await prepareStatic(root);
     expect(await readFile(join(root, "dist/index.html"), "utf8")).toBe("<html>home</html>");
     for (const page of ["contact-us", "gallery", "our-ice-cream-vans"]) {
       expect(await readFile(join(root, "dist", page, "index.html"), "utf8")).toBe(`<html>${page}</html>`);
@@ -39,6 +39,21 @@ describe("Netlify static export", () => {
     const root = await mkdtemp(join(tmpdir(), "plaza-static-"));
     temporaryRoots.push(root);
     await mkdir(join(root, "dist/client"), { recursive: true });
-    await expect(exportStatic(root)).rejects.toThrow();
+    await expect(prepareStatic(root)).rejects.toThrow();
+  });
+
+  it("prepares static output after framework build hooks", () => {
+    const plugin = staticOutputPlugin();
+    expect(plugin.apply).toBe("build");
+    expect(plugin.enforce).toBe("post");
+    expect(plugin.buildApp).toMatchObject({ order: "post" });
+  });
+
+  it("uses the requested Netlify command, directory, Node major and fallback", async () => {
+    const config = await readFile(new URL("../../netlify.toml", import.meta.url), "utf8");
+    expect(config).toMatch(/command = "npm run build"/);
+    expect(config).toMatch(/publish = "dist"/);
+    expect(config).toMatch(/NODE_VERSION = "20"/);
+    expect(await readFile(new URL("../../public/_redirects", import.meta.url), "utf8")).toBe("/*    /index.html    200\n");
   });
 });

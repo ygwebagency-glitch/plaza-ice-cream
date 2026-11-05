@@ -5,11 +5,16 @@
 //     React/TanStack dedupe, error logger plugins, and sandbox detection (port/host/strictPort).
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { staticOutputPlugin } from "./scripts/static-output.mjs";
+
+// Lovable needs its full deployment layout; Netlify/local builds publish only static files.
+const lovableBuild = process.env.LOVABLE_SANDBOX === "1" || Boolean(process.env.DEV_SERVER__PROJECT_PATH);
 
 export default defineConfig({
-  // Build-time server only; Netlify publishes static documents, not this server.
+  // A fetch-compatible build entry avoids the listening node-server preset.
+  // Pin this explicitly so Netlify's automatic preset detection cannot change it.
   nitro: {
-    preset: "node",
+    preset: "cloudflare-module",
     output: { dir: "dist", publicDir: "dist/client", serverDir: "dist/server" },
   },
   tanstackStart: {
@@ -22,6 +27,13 @@ export default defineConfig({
       { path: "/gallery" },
       { path: "/contact-us" },
     ],
-    prerender: { enabled: true, autoStaticPathsDiscovery: false },
+    prerender: {
+      enabled: true,
+      autoStaticPathsDiscovery: false,
+      crawlLinks: false,
+      failOnError: true,
+      retryCount: 0,
+    },
   },
+  plugins: lovableBuild ? [] : [staticOutputPlugin()],
 });

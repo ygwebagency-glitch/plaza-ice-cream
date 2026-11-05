@@ -1,16 +1,9 @@
 [build]
-  command = "npm run build && node scripts/export-static.mjs"
+  command = "npm run build"
   publish = "dist"
 
-[[redirects]]
-  from = "/classic-ice-cream-vans"
-  to = "/our-ice-cream-vans"
-  status = 301
-
-[[redirects]]
-  from = "/our-gallery"
-  to = "/gallery"
-  status = 301
+[build.environment]
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/*"
