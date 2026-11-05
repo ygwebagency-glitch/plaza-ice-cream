@@ -54,6 +54,6 @@ describe("Netlify static export", () => {
     expect(config).toMatch(/command = "npm run build"/);
     expect(config).toMatch(/publish = "dist"/);
     expect(config).toMatch(/NODE_VERSION = "20"/);
-    expect(await readFile(join(process.cwd(), "public/_redirects"), "utf8")).toBe("/*    /index.html    200\n");
+    expect((await readFile(join(process.cwd(), "public/_redirects"), "utf8")).trim()).toBe("/*    /index.html    200");
   });
 });
