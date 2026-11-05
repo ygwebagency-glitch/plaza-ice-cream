@@ -8,7 +8,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { staticOutputPlugin } from "./scripts/static-output.mjs";
 
 // Lovable needs its full deployment layout; Netlify/local builds publish only static files.
-const lovableBuild = process.env.LOVABLE_SANDBOX === "1" || Boolean(process.env.DEV_SERVER__PROJECT_PATH);
+const lovableBuild = process.env["LOVABLE_SANDBOX"] === "1" || Boolean(process.env["DEV_SERVER__PROJECT_PATH"]);
 
 export default defineConfig({
   // A fetch-compatible build entry avoids the listening node-server preset.

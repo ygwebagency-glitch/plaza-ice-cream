@@ -50,10 +50,10 @@ describe("Netlify static export", () => {
   });
 
   it("uses the requested Netlify command, directory, Node major and fallback", async () => {
-    const config = await readFile(new URL("../../netlify.toml", import.meta.url), "utf8");
+    const config = await readFile(join(process.cwd(), "netlify.toml"), "utf8");
     expect(config).toMatch(/command = "npm run build"/);
     expect(config).toMatch(/publish = "dist"/);
     expect(config).toMatch(/NODE_VERSION = "20"/);
-    expect(await readFile(new URL("../../public/_redirects", import.meta.url), "utf8")).toBe("/*    /index.html    200\n");
+    expect(await readFile(join(process.cwd(), "public/_redirects"), "utf8")).toBe("/*    /index.html    200\n");
   });
 });
