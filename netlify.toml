@@ -6,6 +6,18 @@
   NODE_VERSION = "20"
 
 [[redirects]]
+  from = "/classic-ice-cream-vans"
+  to = "/our-ice-cream-vans"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/our-gallery"
+  to = "/gallery"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
